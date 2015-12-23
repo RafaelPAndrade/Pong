@@ -1,4 +1,4 @@
-#coding: latin-1
+#coding: utf-8
 
 
 import pygame
@@ -91,10 +91,11 @@ score2 = 0					#score player 2
 winplayer = 0					#que jogador ganhou
 scoreTot = str(score1) + "   " + str(score2) 	#string que comporta o score
 maxscore = 1					#pontos máximos (até aos maxscore pontos) 
-Intro = False
 match =	False					
 single = False
 pause = False
+pong1 = 2
+pong2 = 3
 
 #------------------------------ciclo principal---------------------------------------------
 while not done:
@@ -169,7 +170,7 @@ while not done:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			done = True
-		elif event.type == pygame.KEYDOWN:		
+		if event.type == pygame.KEYDOWN:		
 			if pause == False:
 				if event.key == pygame.K_q or event.key == pygame.K_UP and single == True:
 					player_one.move_up()
@@ -180,7 +181,7 @@ while not done:
 				elif event.key == pygame.K_l and single == False or event.key == pygame.K_DOWN and single == False:
 					player_two.move_down()
 			
-		elif event.type == pygame.KEYUP:
+		if event.type == pygame.KEYUP:
 			if event.key == pygame.K_y:
 				if pause == False:
 					pause = True
@@ -204,6 +205,9 @@ while not done:
 					player_two.dont_move()				
 				elif event.key == pygame.K_DOWN:
 					player_two.dont_move()
+	
+	
+	
 	
 	if player == True and single == True:
 		if player_two.rect.y + Height2/2 <= ball.rect.y + 7:
@@ -305,9 +309,9 @@ while not done:
 	
 	
 	
-	
-	#Começar a alterar aqui
 	#-----------------Intro---------------------
+	
+		
 	if style == 0:
 		font = pygame.font.Font(None, 70)
 		text = font.render("PONG", 1, constants.BLACK)
@@ -337,34 +341,17 @@ while not done:
 		textpos.centery = constants.SCREEN_HEIGHT*2/5
 		screen.blit(text, textpos)
 		
-		font = pygame.font.Font(None, 50)
-		text = font.render("[2]Type of game:", 1, constants.BLACK)
-		textpos = text.get_rect()
-		textpos.centerx = constants.SCREEN_WIDTH/8
-		textpos.centery = constants.SCREEN_HEIGHT*3/5
-		screen.blit(text, textpos)		
-
-		font = pygame.font.Font(None, 60)
-		text = font.render("Instructions:", 1, constants.BLACK)
-		textpos = text.get_rect()
-		textpos.centerx = constants.SCREEN_WIDTH*3/4
-		textpos.centery = constants.SCREEN_HEIGHT*1/7+15
-		screen.blit(text, textpos)			
-
-		
-		
-		
-		pongdef1=1
+		pongdef1=pong1%2
 
 		if pongdef1== 0:
-			font = pygame.font.Font(None, 50)
+
 			text = font.render("Single-player", 1, constants.BLACK)
 			textpos = text.get_rect()
 			textpos.centerx = constants.SCREEN_WIDTH*3/8
 			textpos.centery = constants.SCREEN_HEIGHT*2/5
 			screen.blit(text, textpos)
 		else:	
-			font = pygame.font.Font(None, 50)
+
 			text = font.render("2-player", 1, constants.BLACK)
 			textpos = text.get_rect()
 			textpos.centerx = constants.SCREEN_WIDTH*3/8
@@ -373,15 +360,25 @@ while not done:
 		
 		
 		
-		pongdef2=1
-		if pongdef2== 0:
+		font = pygame.font.Font(None, 50)
+		text = font.render("[2]Type of game:", 1, constants.BLACK)
+		textpos = text.get_rect()
+		textpos.centerx = constants.SCREEN_WIDTH/8
+		textpos.centery = constants.SCREEN_HEIGHT*3/5
+		screen.blit(text, textpos)		
+		
+		pongdef2=pong2%3
+		
+		if pongdef2== 2:
+			
 			font = pygame.font.Font(None, 50)
 			text = font.render("Classic(11)", 1, constants.BLACK)
 			textpos = text.get_rect()
 			textpos.centerx = constants.SCREEN_WIDTH*3/8
 			textpos.centery = constants.SCREEN_HEIGHT*3/5
 			screen.blit(text, textpos)
-		elif pongdef2== 1:	
+		elif pongdef2== 1:
+		
 			font = pygame.font.Font(None, 50)
 			text = font.render("First to reach 5", 1, constants.BLACK)
 			textpos = text.get_rect()
@@ -389,6 +386,7 @@ while not done:
 			textpos.centery = constants.SCREEN_HEIGHT*3/5
 			screen.blit(text, textpos)		
 		else:
+			
 			font = pygame.font.Font(None, 50)
 			text = font.render("Random", 1, constants.BLACK)
 			textpos = text.get_rect()
@@ -400,95 +398,75 @@ while not done:
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				done = True		
-			elif event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_g:
-					Intro = True
-					single = False
-				if event.key == pygame.K_t:
-					Intro = True
-					single = True
-				if event.key == pygame.K_b:
-					done = True
+		font = pygame.font.Font(None, 60)
+		text = font.render("Instructions:", 1, constants.BLACK)
+		textpos = text.get_rect()
+		textpos.centerx = constants.SCREEN_WIDTH*3/4
+		textpos.centery = constants.SCREEN_HEIGHT*1/7+15
+		screen.blit(text, textpos)		
 	
-	if score1 == 0 and score2 == 0 and style == 0 and Intro == True:
-		font = pygame.font.Font(None, 125)
-		text = font.render("Choose type of game:", 1, constants.BLACK)
+		
+		if pongdef1==0:
+			
+			font = pygame.font.Font(None, 50)
+			text = font.render("Use Q/A to move paddle", 1, constants.BLACK)
+			textpos = text.get_rect()
+			textpos.centerx = constants.SCREEN_WIDTH*3/4
+			textpos.centery = constants.SCREEN_HEIGHT*2/5
+			screen.blit(text, textpos)
+			
+		else:
+			font = pygame.font.Font(None, 45)
+			text = font.render("Use [Q]/[A] and [P]/[L] to move paddle", 1, constants.BLACK)
+			textpos = text.get_rect()
+			textpos.centerx = constants.SCREEN_WIDTH*3/4
+			textpos.centery = constants.SCREEN_HEIGHT*2/5
+			screen.blit(text, textpos)
+			
+		font = pygame.font.Font(None, 50)
+		text = font.render("Use [Y] to pause", 1, constants.BLACK)
+		textpos = text.get_rect()
+		textpos.centerx = constants.SCREEN_WIDTH*3/4
+		textpos.centery = constants.SCREEN_HEIGHT*3/5
+		screen.blit(text, textpos)
+				
+			
+		font = pygame.font.Font(None, 50)
+		text = font.render("Press [SPACE BAR] to continue", 1, constants.BLACK)
 		textpos = text.get_rect()
 		textpos.centerx = constants.SCREEN_WIDTH/2
-		textpos.centery = constants.SCREEN_HEIGHT*2/5
+		textpos.centery = constants.SCREEN_HEIGHT*12/14
 		screen.blit(text, textpos)		
-		
-		
-		
-		
-		if single == False:
-			font = pygame.font.Font(None, 38)
-			text = font.render("Instructions: Use 1-3 to choose type of game; use Q/A and P/L to move up/down, [Y to pause game]", 1, constants.BLACK)
-			textpos = text.get_rect()
-			textpos.centerx = constants.SCREEN_WIDTH/2
-			textpos.centery = constants.SCREEN_HEIGHT*6/7
-			screen.blit(text, textpos)		
-		
-		if single == True:
-			font = pygame.font.Font(None, 38)
-			text = font.render("Instructions: Use 1-3 to choose type of game; use Q/A to move up/down, [Y] to pause game", 1, constants.BLACK)
-			textpos = text.get_rect()
-			textpos.centerx = constants.SCREEN_WIDTH/2
-			textpos.centery = constants.SCREEN_HEIGHT*6/7
-			screen.blit(text, textpos)		
-			
-		
-		
-		
-		ball.dir_x = ball.dir_x
-		ball.dir_y = 0
-		player_one.rect.y = constants.SCREEN_HEIGHT//2-30
-		player_two.rect.y = constants.SCREEN_HEIGHT//2-30		
-		
-		
+
 		
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				done = True
 			if event.type == pygame.KEYDOWN:
-				if event.key == pygame.K_b:
-					done = True				
 				if event.key == pygame.K_1:
-					style = 1
-					maxscore = random.randint(3,8)
-				elif event.key == pygame.K_2:
-					style = 2
-					maxscore = 5
-				elif event.key == pygame.K_3:
-					style = 3
-					maxscore = 11			
-				print (maxscore)
-				
-				
+					pong1 += 1
+				if event.key == pygame.K_2:
+					pong2 += 1	
+				if event.key == pygame.K_3:
+					done = True	
+				if event.key == pygame.K_SPACE:
+					style = pongdef2+1
+					if pongdef1 == 0:
+						single = True
+					ball.dir_x = ball.dir_x
+					ball.dir_y = 0
+					player_one.rect.y = constants.SCREEN_HEIGHT//2-30
+					player_two.rect.y = constants.SCREEN_HEIGHT//2-30
+					pause = False					
 		
-		
-		
-	#acaba aqui e tenho de manter o style=0
-		
-							
+	if style == 1:
+		maxscore = random.randint(3,8)
+	elif style ==2:
+		maxscore = 5
+	elif style == 3:
+		maxscore = 11
+		print(style)
+									
 	if style != 0: #animar e desenhar DEPOIS de escolher o tipo de jogo
 		drawables_list.draw(screen)
 		if pause == False:
@@ -554,7 +532,7 @@ while not done:
 	
 	#---------------Recomeçar?		
 		font = pygame.font.Font(None, 50)
-		text = font.render("Press [G] to restart, [H] to change type of game and [Y] for Intro", 1, constants.CWALLS)
+		text = font.render("Press [G] to restart, and [Y] for Menu", 1, constants.CWALLS)
 		textpos = text.get_rect()
 		textpos.centerx = constants.SCREEN_WIDTH /2 
 		textpos.centery = (constants.SCREEN_HEIGHT)/2 + 75
@@ -577,13 +555,8 @@ while not done:
 					player_one.kill()
 					player_two.kill()					
 					player = False
-					
-				if event.key == pygame.K_h or event.key == pygame.K_y:
-					style = 0
-				
 				if event.key == pygame.K_y:
-					Intro = False
-				
+					style = 0
 				if event.key == pygame.K_b:
 					done = True
 			if event.type == pygame.QUIT:
