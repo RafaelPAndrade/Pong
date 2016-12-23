@@ -1,3 +1,5 @@
+#coding: latin-1
+
 import pygame
 import constants
 from block import Block
@@ -24,7 +26,7 @@ class Paddle(Block):
 	
 	
 	def update(self):
-		# atualizar a posiÃ§Ã£o da raquete
+		# atualizar a posição da raquete
 		self.rect.y += self.change_y
 		collision_list = pygame.sprite.spritecollide(self, self.walls, False)
 		# se houver pelo menos um objeto na lista de colisoes... inversao de marcha
