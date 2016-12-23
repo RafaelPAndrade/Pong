@@ -30,7 +30,7 @@ class Ball(Block):
 		self.rect.y += self.dir_y
 		collision_list = pygame.sprite.spritecollide(self, self.colliders, False)
 		if len(collision_list) >  0:
-			#se nos estamos a mover paracima
+			#se nos estamos a mover para cima
 			if self.dir_y < 0 :
 				if self.rect.top < collision_list[0].rect.bottom:
 					self.rect.top = collision_list[0].rect.bottom

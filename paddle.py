@@ -1,5 +1,3 @@
-#coding: latin-1
-
 import pygame
 import constants
 from block import Block
