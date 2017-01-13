@@ -1,13 +1,13 @@
 #coding: utf-8
 
-
-
 import pygame
-from printing import words
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
-from menu import menu
-from jogo import jogo
-from postgame import postgame
+
+
+from lib.printing import words
+from lib.constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from lib.menu import menu
+from lib.jogo import jogo
+from lib.postgame import postgame
 
 
 # Inicializao da biblioteca pygame

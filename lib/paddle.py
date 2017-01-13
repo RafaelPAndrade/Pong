@@ -1,8 +1,9 @@
-#coding: latin-1
+#coding: utf-8
 
 import pygame
-import constants
-from block import Block
+
+from .constants import *
+from .block import Block
 
 class Paddle(Block):
 	""" Esta classe representa uma raquete do jogo """
@@ -12,13 +13,13 @@ class Paddle(Block):
 		self.walls = None
 
 	def move_up(self):
-		self.change_y = -constants.VEL
+		self.change_y = -VEL
 
 	def move_down(self):
-		self.change_y = constants.VEL
+		self.change_y = VEL
 
 	def dont_move(self):
-		self.change_y = constants.NULL
+		self.change_y = NULL
 	
 	
 	def set_walls(self, walls):
@@ -26,7 +27,7 @@ class Paddle(Block):
 	
 	
 	def update(self):
-		# atualizar a posição da raquete
+		# atualizar a posicao da raquete
 		self.rect.y += self.change_y
 		collision_list = pygame.sprite.spritecollide(self, self.walls, False)
 		# se houver pelo menos um objeto na lista de colisoes... inversao de marcha
