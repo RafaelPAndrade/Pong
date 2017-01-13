@@ -1,10 +1,8 @@
 #coding: utf-8
-
-from printing import words
 import pygame
-from constants import CFUNDO, FPS, SCREEN_WIDTH, SCREEN_HEIGHT, CLETRA
 
-
+from .printing import words
+from .constants import CFUNDO, FPS, SCREEN_WIDTH, SCREEN_HEIGHT, CLETRA
 
 
 def menu(display, relógio):

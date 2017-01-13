@@ -1,9 +1,9 @@
 #coding: utf-8
 
-
 import pygame
-from printing import words
-from constants import CWALLS, SCREEN_WIDTH, SCREEN_HEIGHT, CFUNDO, FPS
+
+from .printing import words
+from .constants import CWALLS, SCREEN_WIDTH, SCREEN_HEIGHT, CFUNDO, FPS
 
 
 

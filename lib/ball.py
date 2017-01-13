@@ -1,12 +1,12 @@
-from block import Block
-import constants
 import random
 import pygame
-import paddle
+
+from .block import Block
+from .constants import *
 
 class Ball(Block):
 	def __init__(self, x, y, color):
-		super().__init__(x,y,15,15,constants.CBALL)
+		super().__init__(x,y,15,15,CBALL)
 		self.colliders = None
 		
 		

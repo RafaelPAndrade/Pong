@@ -1,13 +1,13 @@
 #coding: utf-8
-
-from printing import words
 import pygame
 import random
-from paddle import Paddle
-from wall import Wall
-from ball import Ball
-from block import Block
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, CWALLS, CPLAYER1, CPLAYER2, CBALL, CFUNDO, Height1, Height2, RED, FPS
+
+from .printing import words
+from .paddle import Paddle
+from .wall import Wall
+from .ball import Ball
+from .block import Block
+from .constants import SCREEN_WIDTH, SCREEN_HEIGHT, CWALLS, CPLAYER1, CPLAYER2, CBALL, CFUNDO, Height1, Height2, RED, FPS
 
 
 
